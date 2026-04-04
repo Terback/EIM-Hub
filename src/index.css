@@ -7,8 +7,11 @@
   --color-accent: #1565c0;
 }
 
+/* Explicitly define dark variant to support class-based switching */
+@variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+    @apply font-sans antialiased;
   }
 }
