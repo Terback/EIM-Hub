@@ -1,20 +1,39 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# EIM Dashboard (Hub) 🚀
 
-# Run and deploy your AI Studio app
+### The Central Nervous System of EIM Technology & Academy
 
-This contains everything you need to run your app locally.
+This is a lightweight, high-performance dashboard acting as the centralized portal for all EIM internal tools and educational resources. Built with the **Vibe Coding** philosophy—fast, functional, and aesthetically pleasing.
 
-View your app in AI Studio: https://ai.studio/apps/b6a4c8e0-889e-43d6-be33-10eab73700fc
+---
 
-## Run Locally
+## 🔗 Live Tools (The Ecosystem)
 
-**Prerequisites:**  Node.js
+| Tool Name | URL | Description |
+| :--- | :--- | :--- |
+| **Invoice Generator** | [invoice.eimtechnology.com](https://invoice.eimtechnology.com) | Automated billing and invoice management system. |
+| **Team Schedule** | [teamschedule.eimtechnology.com](https://teamschedule.eimtechnology.com) | Real-time overview of team shifts and availability. |
+| **Training Intro (CN)** | [training.eimacademy.com](https://training.eimacademy.com) | Comprehensive Chinese curriculum and course details. |
+| **Report Generator** | [eim-training-report-generator.vercel.app](https://eim-training-report-generator.vercel.app/) | Automatic student training report generation tool. |
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🛠 Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) / [React](https://reactjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Deployment:** [Vercel](https://vercel.com/)
+- **DNS Management:** [Cloudflare](https://www.cloudflare.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+
+---
+
+## 📂 Project Structure
+
+```text
+.
+├── src/
+│   ├── components/      # Reusable UI components (Cards, Navbar)
+│   ├── config/          # Tool links and metadata configuration
+│   └── app/             # Next.js App Router (Main Dashboard Page)
+├── public/              # Static assets (EIM Logos, Favicons)
+└── README.md            # You are here
