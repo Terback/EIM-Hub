@@ -340,7 +340,7 @@ export default function App() {
                 className="h-8 sm:h-10 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
-              <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Hub</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">EIM Workstation Hub</h1>
             </div>
             
             <div className="flex items-center gap-2 sm:gap-4">
