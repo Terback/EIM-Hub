@@ -138,39 +138,39 @@ const ToolCard: React.FC<{
       className={`group relative flex flex-col bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm hover:shadow-md dark:hover:shadow-blue-900/10 hover:border-blue-200 dark:hover:border-blue-900/50 transition-all h-full ${!isAdmin && !isPlaceholder ? 'cursor-pointer' : ''}`}
     >
       {isAdmin && (
-        <div className="absolute top-3 right-3 flex flex-col gap-2 z-20">
+        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex flex-col gap-2 z-20">
           <div className="flex gap-2">
             <button 
               onClick={(e) => { e.stopPropagation(); onEdit(); }}
-              className="p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-200 dark:hover:border-blue-800 shadow-sm transition-all"
+              className="p-2 sm:p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-200 dark:hover:border-blue-800 shadow-sm transition-all"
               title="Edit Tool"
             >
-              <Pencil className="w-3.5 h-3.5" />
+              <Pencil className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
             </button>
             <button 
               onClick={(e) => { e.stopPropagation(); onDelete(); }}
-              className="p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 hover:border-red-200 dark:hover:border-red-800 shadow-sm transition-all"
+              className="p-2 sm:p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 hover:border-red-200 dark:hover:border-red-800 shadow-sm transition-all"
               title="Delete Tool"
             >
-              <Trash2 className="w-3.5 h-3.5" />
+              <Trash2 className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
             </button>
           </div>
           <div className="flex gap-2">
             <button 
               onClick={(e) => { e.stopPropagation(); onMoveUp?.(); }}
               disabled={isFirst}
-              className={`p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md shadow-sm transition-all ${isFirst ? 'opacity-30 cursor-not-allowed text-slate-300 dark:text-slate-600' : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-200 dark:hover:border-blue-800'}`}
+              className={`p-2 sm:p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md shadow-sm transition-all ${isFirst ? 'opacity-30 cursor-not-allowed text-slate-300 dark:text-slate-600' : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-200 dark:hover:border-blue-800'}`}
               title="Move Left/Up"
             >
-              <ChevronUp className="w-3.5 h-3.5 rotate-[-90deg] md:rotate-0" />
+              <ChevronUp className="w-4 h-4 sm:w-3.5 sm:h-3.5 rotate-[-90deg] md:rotate-0" />
             </button>
             <button 
               onClick={(e) => { e.stopPropagation(); onMoveDown?.(); }}
               disabled={isLast}
-              className={`p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md shadow-sm transition-all ${isLast ? 'opacity-30 cursor-not-allowed text-slate-300 dark:text-slate-600' : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-200 dark:hover:border-blue-800'}`}
+              className={`p-2 sm:p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md shadow-sm transition-all ${isLast ? 'opacity-30 cursor-not-allowed text-slate-300 dark:text-slate-600' : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-200 dark:hover:border-blue-800'}`}
               title="Move Right/Down"
             >
-              <ChevronDown className="w-3.5 h-3.5 rotate-[-90deg] md:rotate-0" />
+              <ChevronDown className="w-4 h-4 sm:w-3.5 sm:h-3.5 rotate-[-90deg] md:rotate-0" />
             </button>
           </div>
         </div>
@@ -363,14 +363,16 @@ export default function App() {
       <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <img 
                 src="https://github.com/Terback/Images/blob/main/logo/logo%20color%20palette-website-01.png?raw=true" 
                 alt="EIM Logo" 
-                className="h-8 sm:h-10 w-auto object-contain dark:brightness-110"
+                className="h-7 sm:h-10 w-auto object-contain dark:brightness-110"
                 referrerPolicy="no-referrer"
               />
-              <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">EIM Workstation Hub</h1>
+              <h1 className="text-base sm:text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
+                EIM <span className="hidden min-[450px]:inline">Workstation</span> Hub
+              </h1>
             </div>
             
             <div className="flex items-center gap-2 sm:gap-4">
@@ -395,13 +397,21 @@ export default function App() {
               </button>
               
               {!isAdmin && (
-                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-[#1565c0] dark:text-blue-400 rounded-full text-xs font-semibold">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1565c0] dark:bg-blue-400"></span>
-                  </span>
-                  Operational
-                </div>
+                <>
+                  <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-[#1565c0] dark:text-blue-400 rounded-full text-xs font-semibold">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1565c0] dark:bg-blue-400"></span>
+                    </span>
+                    Operational
+                  </div>
+                  <div className="md:hidden flex items-center p-2 bg-blue-50 dark:bg-blue-900/30 rounded-full" title="Operational">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1565c0] dark:bg-blue-400"></span>
+                    </span>
+                  </div>
+                </>
               )}
             </div>
           </div>
@@ -420,51 +430,53 @@ export default function App() {
               exit={{ opacity: 0 }}
               className="mb-12"
             >
-              <div className="flex items-center gap-3 mb-6 group/header">
-                <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 whitespace-nowrap flex items-center gap-2">
-                  {category.title}
-                  {isAdmin && (
-                    <div className="flex gap-1 opacity-0 group-hover/header:opacity-100 transition-opacity">
-                      <button 
-                        onClick={() => setEditingCategory(category)}
-                        className="p-1 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                        title="Rename Category"
-                      >
-                        <Pencil className="w-3 h-3" />
-                      </button>
-                      <button 
-                        onClick={() => handleDeleteCategory(category.id)}
-                        className="p-1 text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
-                        title="Delete Category"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                      <div className="flex gap-0.5 ml-1 border-l border-slate-200 dark:border-slate-800 pl-1">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 group/header">
+                <div className="flex items-center gap-3 flex-grow">
+                  <h2 className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 whitespace-nowrap flex items-center gap-2">
+                    {category.title}
+                    {isAdmin && (
+                      <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover/header:opacity-100 transition-opacity">
                         <button 
-                          onClick={() => moveCategory(catIndex, 'up')}
-                          disabled={catIndex === 0}
-                          className={`p-1 transition-colors ${catIndex === 0 ? 'text-slate-200 dark:text-slate-800 cursor-not-allowed' : 'text-slate-400 hover:text-blue-600 dark:hover:text-blue-400'}`}
-                          title="Move Category Up"
+                          onClick={() => setEditingCategory(category)}
+                          className="p-1.5 sm:p-1 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                          title="Rename Category"
                         >
-                          <ChevronUp className="w-3 h-3" />
+                          <Pencil className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
                         </button>
                         <button 
-                          onClick={() => moveCategory(catIndex, 'down')}
-                          disabled={catIndex === config.length - 1}
-                          className={`p-1 transition-colors ${catIndex === config.length - 1 ? 'text-slate-200 dark:text-slate-800 cursor-not-allowed' : 'text-slate-400 hover:text-blue-600 dark:hover:text-blue-400'}`}
-                          title="Move Category Down"
+                          onClick={() => handleDeleteCategory(category.id)}
+                          className="p-1.5 sm:p-1 text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                          title="Delete Category"
                         >
-                          <ChevronDown className="w-3 h-3" />
+                          <Trash2 className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
                         </button>
+                        <div className="flex gap-0.5 ml-1 border-l border-slate-200 dark:border-slate-800 pl-1">
+                          <button 
+                            onClick={() => moveCategory(catIndex, 'up')}
+                            disabled={catIndex === 0}
+                            className={`p-1.5 sm:p-1 transition-colors ${catIndex === 0 ? 'text-slate-200 dark:text-slate-800 cursor-not-allowed' : 'text-slate-400 hover:text-blue-600 dark:hover:text-blue-400'}`}
+                            title="Move Category Up"
+                          >
+                            <ChevronUp className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
+                          </button>
+                          <button 
+                            onClick={() => moveCategory(catIndex, 'down')}
+                            disabled={catIndex === config.length - 1}
+                            className={`p-1.5 sm:p-1 transition-colors ${catIndex === config.length - 1 ? 'text-slate-200 dark:text-slate-800 cursor-not-allowed' : 'text-slate-400 hover:text-blue-600 dark:hover:text-blue-400'}`}
+                            title="Move Category Down"
+                          >
+                            <ChevronDown className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </h2>
-                <div className="h-px flex-grow bg-slate-200 dark:bg-slate-800"></div>
+                    )}
+                  </h2>
+                  <div className="h-px flex-grow bg-slate-200 dark:bg-slate-800"></div>
+                </div>
                 {isAdmin && (
                   <button 
                     onClick={() => setEditingTool({ catId: category.id })}
-                    className="flex items-center gap-1.5 px-3 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-800 transition-all"
+                    className="flex items-center justify-center gap-1.5 px-4 py-2 sm:px-3 sm:py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-800 transition-all w-full sm:w-auto"
                   >
                     <Plus className="w-3 h-3" /> Add Tool
                   </button>

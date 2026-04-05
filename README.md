@@ -1,39 +1,20 @@
-# EIM Hub 🚀
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-### Centralized Gateway for EIM Technology & Academy
+# Run and deploy your AI Studio app
 
-This repository hosts the **EIM Hub**, a minimalist dashboard designed to unify all internal tools and external portals into a single, high-performance interface.
+This contains everything you need to run your app locally.
 
----
+View your app in AI Studio: https://ai.studio/apps/b6a4c8e0-889e-43d6-be33-10eab73700fc
 
-## 🔗 Integrated Tools
+## Run Locally
 
-- **[Invoice Generator](https://invoice.eimtechnology.com)**: Billing and automated invoices.
-- **[Team Schedule](https://teamschedule.eimtechnology.com/)**: Resource allocation and time tracking.
-- **[Training Intro](https://training.eimacademy.com/)**: Course curriculum and academy info.
-- **[Report Generator](https://eim-training-report-generator.vercel.app/)**: Automated student performance reporting.
+**Prerequisites:**  Node.js
 
----
 
-## 🛠 Tech & Deployment
-
-- **Framework**: Next.js 14+ (App Router)
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **Deployment**: [Vercel](https://vercel.com)
-- **Domain**: `hub.eimtechnology.com` (Managed via **Cloudflare**)
-
----
-
-## 🚀 Deployment Steps
-
-1. **Vercel**: Link this GitHub repo and set the domain to `hub.eimtechnology.com`.
-2. **Cloudflare**: 
-   - Add **CNAME** record.
-   - **Name**: `hub`
-   - **Target**: `cname.vercel-dns.com`
-   - **Proxy Status**: `DNS Only` (for SSL handshake).
-
----
-
-© 2026 **Terrence Dai / EIM Technology**.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
