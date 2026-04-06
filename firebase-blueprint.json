@@ -1,0 +1,52 @@
+{
+  "entities": {
+    "Category": {
+      "title": "Category",
+      "description": "A category of tools",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The name of the category" },
+        "order": { "type": "integer", "description": "The display order of the category" }
+      },
+      "required": ["title", "order"]
+    },
+    "Tool": {
+      "title": "Tool",
+      "description": "A tool within a category",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The name of the tool" },
+        "description": { "type": "string", "description": "A brief description of the tool" },
+        "link": { "type": "string", "description": "The URL the tool points to" },
+        "iconName": { "type": "string", "description": "The name of the icon to display" },
+        "comingSoon": { "type": "boolean", "description": "Whether the tool is coming soon" },
+        "order": { "type": "integer", "description": "The display order of the tool within the category" }
+      },
+      "required": ["title", "description", "link", "iconName", "order"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile and role",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["admin", "user"] }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Top-level categories"
+    },
+    "/categories/{categoryId}/tools/{toolId}": {
+      "schema": "Tool",
+      "description": "Tools within a specific category"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and roles"
+    }
+  }
+}
