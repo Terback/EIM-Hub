@@ -22,7 +22,8 @@ import {
   deleteDoc, 
   addDoc,
   writeBatch,
-  getDocFromServer
+  getDocFromServer,
+  getDocs
 } from "firebase/firestore";
 import { db, auth, handleFirestoreError, OperationType } from "./firebase";
 import { 
@@ -381,10 +382,16 @@ function AppContent() {
 
   // Migration: Populate Firestore with initial data if empty
   useEffect(() => {
-    if (!isAdmin || config.length > 0) return;
+    if (!isAdminModeActive || !isAuthReady || isLoading) return; 
+    if (config.length > 0) return;
 
     const migrate = async () => {
       try {
+        // Double check Firestore directly to avoid race conditions
+        const snapshot = await getDocs(collection(db, "categories"));
+        if (!snapshot.empty) return;
+
+        console.log("Starting migration...");
         const batch = writeBatch(db);
         for (let i = 0; i < INITIAL_CONFIG.length; i++) {
           const cat = INITIAL_CONFIG[i];
@@ -412,20 +419,31 @@ function AppContent() {
     };
 
     migrate();
-  }, [isAdmin, config.length]);
+  }, [isAdminModeActive, isAuthReady, isLoading, config.length]);
 
   // Firestore Real-time Listener
   useEffect(() => {
     if (!isAuthReady) return;
 
+    const toolUnsubscribes = new Map<string, () => void>();
+
     const q = query(collection(db, "categories"), orderBy("order", "asc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    const unsubscribeCategories = onSnapshot(q, (snapshot) => {
       const categoriesData = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
         tools: []
       } as Category));
       
+      // Cleanup tool unsubscribes for categories that no longer exist
+      const currentCatIds = new Set(categoriesData.map(c => c.id));
+      for (const [catId, unsub] of toolUnsubscribes.entries()) {
+        if (!currentCatIds.has(catId)) {
+          unsub();
+          toolUnsubscribes.delete(catId);
+        }
+      }
+
       if (categoriesData.length === 0) {
         setConfig([]);
         setIsLoading(false);
@@ -443,35 +461,37 @@ function AppContent() {
       });
 
       // Fetch tools for each category
-      const toolUnsubscribes: (() => void)[] = [];
       categoriesData.forEach((cat) => {
-        const toolsQ = query(collection(db, `categories/${cat.id}/tools`), orderBy("order", "asc"));
-        const unsub = onSnapshot(toolsQ, (toolsSnapshot) => {
-          const tools = toolsSnapshot.docs.map(tDoc => ({
-            id: tDoc.id,
-            ...tDoc.data()
-          } as Tool));
-          
-          setConfig(prev => {
-            return prev.map(c => c.id === cat.id ? { ...c, tools } : c);
+        if (!toolUnsubscribes.has(cat.id)) {
+          const toolsQ = query(collection(db, `categories/${cat.id}/tools`), orderBy("order", "asc"));
+          const unsub = onSnapshot(toolsQ, (toolsSnapshot) => {
+            const tools = toolsSnapshot.docs.map(tDoc => ({
+              id: tDoc.id,
+              ...tDoc.data()
+            } as Tool));
+            
+            setConfig(prev => {
+              return prev.map(c => c.id === cat.id ? { ...c, tools } : c);
+            });
+            setIsLoading(false);
+          }, (error) => {
+            console.error(`Error fetching tools for ${cat.id}:`, error);
+            setIsLoading(false);
           });
-          setIsLoading(false);
-        }, (error) => {
-          console.error(`Error fetching tools for ${cat.id}:`, error);
-          setIsLoading(false);
-        });
-        toolUnsubscribes.push(unsub);
+          toolUnsubscribes.set(cat.id, unsub);
+        }
       });
-
-      return () => {
-        toolUnsubscribes.forEach(u => u());
-      };
     }, (error) => {
       handleFirestoreError(error, OperationType.LIST, "categories");
       setIsLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribeCategories();
+      for (const unsub of toolUnsubscribes.values()) {
+        unsub();
+      }
+    };
   }, [isAuthReady]);
 
   const handleLogin = async () => {
